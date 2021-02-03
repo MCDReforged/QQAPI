@@ -8,12 +8,12 @@ from .functions import version_compare
 url = 'https://api.github.com/repos/zhang-anzhi/CoolQAPI/releases/latest'
 
 
-def check(server, i=None):
-    t = Thread(target=check_update, args=(server, i), name='CoolQAPI Updater')
+def check(server, src=None):
+    t = Thread(target=check_update, args=(server, src), name='CoolQAPI Updater')
     t.start()
 
 
-def check_update(server, info=None):
+def check_update(server, src):
     try:
         server.logger.info('检测更新中')
         r = requests.get(url).json()
@@ -31,10 +31,10 @@ def check_update(server, info=None):
         elif compare == -1:
             server.logger.info('检测到 CoolQAPI 为开发版')
     except:
-        if info is None:
+        if src is None:
             server.logger.error('CoolQAPI 更新失败')
         else:
-            server.reply(info, '§cCoolQAPI 更新失败')
+            src.reply('§cCoolQAPI 更新失败')
 
 
 def download(server, download_link, ver):

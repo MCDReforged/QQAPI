@@ -72,9 +72,9 @@ api的端口
 
 | Command | Function |
 | -| -|
-| !!CQ reload all | 重载所有(接收服务器, 插件, 配置文件) |
-| !!CQ reload plugin | 重载插件 |
-| !!CQ update | 检查并自动更新 |
+| !!cq reload all | 重载所有(接收服务器, 插件, 配置文件) |
+| !!cq reload plugin | 重载插件 |
+| !!cq update | 检查并自动更新 |
 
 ## 开发
 

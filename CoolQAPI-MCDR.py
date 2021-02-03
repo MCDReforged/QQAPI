@@ -1,31 +1,61 @@
 # -*- coding: utf-8 -*-
-
 import time
 
-from plugins.CoolQAPI.utils.functions import load_source
-from plugins.CoolQAPI.utils.update import check
+from mcdreforged.api.command import *
+from CoolQAPI.utils.constant import VERSION
+from CoolQAPI.utils.functions import load_source
+from CoolQAPI.utils.update import check
 
 cool_q_api = load_source('plugins/CoolQAPI/CoolQAPI.py')
 
-help_msg = '''
-§6!!CQ reload all §7重载所有
-§6!!CQ reload plugin §7重载插件
-§6!!CQ update §7检查并自动更新
-'''
+PLUGIN_METADATA = {
+    'id': 'cool_q_api',
+    'version': VERSION,
+    'name': 'CoolQAPI',
+    'description': 'Connect Minecraft and QQ',
+    'author': 'zhang_anzhi',
+    'link': 'https://github.com/zhang-anzhi/CoolQAPI'
+}
+HELP_MESSAGE = '''§6!!cq reload all §7重载所有
+§6!!cq reload plugin §7重载插件
+§6!!cq update §7检查并自动更新'''
 
 
 def on_load(server, old):
-    time.sleep(1)
     global cool_q_api
-    try:
-        if old is not None and old.cool_q_api is not None:
-            cool_q_api = old.cool_q_api
-        else:
-            check(server)
-            start(server)
-    except:
+    if old is not None and hasattr(old, 'cool_q_api'):
+        cool_q_api = old.cool_q_api
+    else:
         check(server)
         start(server)
+
+    def reload_all(src):
+        stop()
+        time.sleep(1)
+        start(server)
+        time.sleep(0.1)
+        src.reply('§a已成功重载所有')
+
+    def reload_plugin(src):
+        reload_plugins()
+        src.reply('§a已成功重载插件')
+
+    server.register_command(
+        Literal('!!cq').
+            runs(lambda src: src.reply(HELP_MESSAGE)).
+            then(
+            Literal('reload').
+                then(
+                Literal('all').runs(reload_all)
+            ).
+                then(
+                Literal('plugin').runs(reload_plugin)
+            )
+        ).
+            then(
+            Literal('update').runs(lambda src: check(src.get_server(), src))
+        )
+    )
 
 
 def on_mcdr_stop(server):
@@ -41,30 +71,6 @@ def start(server):
 def stop():
     global cool_q_api
     cool_q_api.stop()
-
-
-def on_user_info(server, info):
-    if info.content == '!!CQ':
-        server.reply(info, help_msg)
-    elif info.content.startswith('!!CQ '):
-        command(server, info, info.content.split(' '))
-
-
-def command(server, info, command):
-    if len(command) == 3 and command[1] == 'reload':
-        if command[2] == 'all':
-            stop()
-            time.sleep(1)
-            start(server)
-            time.sleep(0.1)
-            server.reply(info, '§a已成功重载所有')
-        elif command[2] == 'plugin':
-            reload_plugins()
-            server.reply(info, '§a已成功重载插件')
-    elif len(command) == 2 and command[1] == 'update':
-        check(server, info)
-    else:
-        server.reply(info, '§c未知指令')
 
 
 def reload_plugins():
