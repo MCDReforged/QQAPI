@@ -1,6 +1,6 @@
 # 开发文档
 
-可以阅读 [example_plugin.py](https://github.com/zhang-anzhi/CoolQAPI/blob/master/example_plugin.py) 来理解
+[示例模范插件QQChat](https://github.com/zhang-anzhi/MCDReforgedPlugins/tree/master/QQChat)
 
 ## 事件
 

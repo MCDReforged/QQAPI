@@ -14,13 +14,62 @@
 
 前往 [release](https://github.com/zhang-anzhi/CoolQAPI/releases) 页面下载最新的release并解压
 
-### 配置mirai
+### 配置QQ机器人
 
-解压随release发布的 `mirai.zip`
+机器人建议使用 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp)
 
-将 `\plugins\CQHTTPMirai\setting.yml` 中的 `QQ号` 改为要使用的QQ号
+如有问题可以在 MCDR 群内讨论或发 Issue
 
-启动mirai并登陆
+示例配置(请自行配置QQ号和密码)：
+
+```javascript
+{
+    uin: 0
+    password: "password"
+    encrypt_password: false
+    password_encrypted: ""
+    enable_db: true
+    access_token: ""
+    relogin: {
+        enabled: true
+        relogin_delay: 3
+        max_relogin_times: 0
+    }
+    _rate_limit: {
+        enabled: false
+        frequency: 1
+        bucket_size: 1
+    }
+    ignore_invalid_cqcode: false
+    force_fragmented: false
+    heartbeat_interval: 0
+    http_config: {
+        enabled: true
+        host: 127.0.0.1
+        port: 5700
+        timeout: 0
+        post_urls: {
+            "127.0.0.1:5701/post": ""
+        }
+    }
+    ws_config: {
+        enabled: false
+        host: 0.0.0.0
+        port: 6700
+    }
+    ws_reverse_servers: []
+    post_message_format: array
+    use_sso_address: false
+    debug: false
+    log_level: "info"
+    web_ui: {
+        enabled: false
+        host: 127.0.0.1
+        web_ui_port: 9999
+        web_input: false
+    }
+}
+```
 
 ### 配置MCDR
 
