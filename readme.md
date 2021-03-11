@@ -105,7 +105,7 @@
 
 api的ip地址
 
-`post_port`
+`api_port`
 
 默认值: `5700`
 
