@@ -1,0 +1,45 @@
+id: cool_q_api
+name: CoolQAPI
+author: zhang_anzhi
+describe:
+    en_us: CoolQ and MCDR connect plugin develop API
+    zh_cn: 酷Q和MCDR的插件开发API
+link: https://github.com/zhang-anzhi/CoolQAPI
+setup: https://raw.githubusercontent.com/zhang-anzhi/CoolQAPI/master/mcdreforged.plugin.setup.py
+dependencies:
+    python:
+        'requests': '*'
+        'flask': '*'
+        'PyYAML': '*'
+        'psutil': '*'
+version:
+    0.0.1:
+        files:
+            CoolQAPI-v0.0.1.zip: https://github.com/zhang-anzhi/CoolQAPI/releases/download/v0.0.1/CoolQAPI-v0.0.1.zip
+    0.0.2:
+        files:
+            CoolQAPI-v0.0.2.zip: https://github.com/zhang-anzhi/CoolQAPI/releases/download/v0.0.2/CoolQAPI-v0.0.2.zip
+    0.0.4:
+        files:
+            CoolQAPI-0.0.4.zip: https://github.com/zhang-anzhi/CoolQAPI/releases/download/0.0.4/CoolQAPI-0.0.4.zip
+    0.0.5:
+        files:
+            CoolQAPI-0.0.5.zip: https://github.com/zhang-anzhi/CoolQAPI/releases/download/0.0.5/CoolQAPI-0.0.5.zip
+    0.0.6:
+        files:
+            CoolQAPI-0.0.6.zip: https://github.com/zhang-anzhi/CoolQAPI/releases/download/0.0.6/CoolQAPI-0.0.6.zip
+    0.0.7:
+        files:
+            CoolQAPI-0.0.7.zip: https://github.com/zhang-anzhi/CoolQAPI/releases/download/0.0.7/CoolQAPI-0.0.7.zip
+    0.0.8:
+        files:
+            CoolQAPI-0.0.8.zip: https://github.com/zhang-anzhi/CoolQAPI/releases/download/0.0.8/CoolQAPI-0.0.8.zip
+    0.0.9:
+        files:
+            CoolQAPI-0.0.9.zip: https://github.com/zhang-anzhi/CoolQAPI/releases/download/0.0.9/CoolQAPI-0.0.9.zip
+    0.0.10:
+        files:
+            CoolQAPI-0.0.10.zip: https://github.com/zhang-anzhi/CoolQAPI/releases/download/0.0.10/CoolQAPI-0.0.10.zip
+    0.1.0:
+        files:
+            CoolQAPI-0.1.0.zip: https://github.com/zhang-anzhi/CoolQAPI/releases/download/0.1.0/CoolQAPI-0.1.0.zip
