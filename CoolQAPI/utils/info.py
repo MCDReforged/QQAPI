@@ -178,10 +178,6 @@ class Info:
     def __getitem__(self, item):
         return self.raw[item]
 
-    def load_event(self):
-        """load plugins"""
-        self.__event.load()
-
     def get_bot(self):
         """get bot object"""
         return self.__bot

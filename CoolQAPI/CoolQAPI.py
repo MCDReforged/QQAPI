@@ -28,11 +28,6 @@ def stop():
     is_work = False
 
 
-def load_event():
-    """load plugins"""
-    post_server.load_event()
-
-
 def get_bot():
     """get bot object"""
     return post_server.get_bot()

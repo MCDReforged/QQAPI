@@ -39,10 +39,6 @@ class PostServer(Thread):
                             threaded=False)
         self.server.logger.info('CoolQAPI server was exit')
 
-    def load_event(self):
-        """load plugins"""
-        self.info.load_event()
-
     def get_bot(self):
         """get bot object"""
         return self.info.get_bot()
