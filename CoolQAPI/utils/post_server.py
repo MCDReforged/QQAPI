@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-
-import json
+import time
 import logging
 from threading import Thread
+
 from flask import Flask, request
 
 from .info import Info
@@ -18,14 +18,19 @@ class PostServer(Thread):
         logging.getLogger('werkzeug').setLevel(logging.ERROR)
 
     def init(self, server, config):
+        def parse():
+            self.info.parse(dict(request.json))
+            return ''
+
         self.server = server
         self.config = config
         self.info = Info(self.server, self.config)
-
-        @self.bot_server.route('/post', methods=['POST'])
-        def server():
-            self.info.parse(json.loads(request.get_data().decode('utf-8')))
-            return ''
+        self.bot_server.add_url_rule(
+            f'/{self.config["post_path"]}',
+            view_func=parse,
+            methods=['POST'],
+            endpoint=str(time.time())
+        )
 
     def run(self):
         self.server.logger.info('CoolQAPI server is starting up')
