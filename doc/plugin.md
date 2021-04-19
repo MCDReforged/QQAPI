@@ -90,10 +90,6 @@ MCDReforged的 `server` 对象, 推荐阅读MCDR的 [开发文档](https://githu
 
 ## API
 
-### reload_plugins()
-
-用于重载插件
-
 ### get_bot()
 
 用于获取 `bot` 对象
