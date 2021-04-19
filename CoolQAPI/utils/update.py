@@ -2,10 +2,8 @@
 import requests
 import os
 from threading import Thread
-from .constant import VERSION, NAME
+from .constant import VERSION, NAME, RELEASE_URL
 from .functions import version_compare
-
-url = 'https://api.github.com/repos/zhang-anzhi/CoolQAPI/releases/latest'
 
 
 def check(server, src=None):
@@ -16,7 +14,7 @@ def check(server, src=None):
 def check_update(server, src):
     try:
         server.logger.info('检测更新中')
-        r = requests.get(url).json()
+        r = requests.get(RELEASE_URL).json()
         try:
             compare = version_compare(r['tag_name'], VERSION)
         except ValueError:
