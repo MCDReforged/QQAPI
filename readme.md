@@ -23,70 +23,52 @@
 示例配置(请修改QQ号和密码)：
 
 ```yaml
-account:
-  uin: 123123123
-  password: 'psasword'
-  encrypt: false
-  status: 0
-  relogin:
-    disabled: false
-    delay: 3
-    interval: 0
-    max-times: 0
-  use-sso-address: true
-heartbeat:
-  disabled: false
-  interval: 5
-message:
-  post-format: array
-  ignore-invalid-cqcode: false
-  force-fragment: false
-  fix-url: false
-  proxy-rewrite: ''
-  report-self-message: false
-  remove-reply-at: false
-  extra-reply-data: false
-output:
-  log-level: warn
-  debug: false
-default-middlewares: &default
-  access-token: ''
-  filter: ''
-  rate-limit:
-    enabled: false
-    frequency: 1
-    bucket: 1
-servers:
-  - http:
-      disabled: false
-      host: 127.0.0.1
-      port: 5700
-      timeout: 5
-      middlewares:
-        <<: *default
-      post:
-          - url: '127.0.0.1:5701/post'
-  - ws:
-      disabled: true
-      host: 127.0.0.1
-      port: 6700
-      middlewares:
-        <<: *default
-  - ws-reverse:
-      disabled: true
-      universal: ws://your_websocket_universal.server
-      api: ws://your_websocket_api.server
-      event: ws://your_websocket_event.server
-      reconnect-interval: 3000
-      middlewares:
-        <<: *default
-  - pprof:
-      disabled: true
-      host: 127.0.0.1
-      port: 7700
-database:
-  leveldb:
-    enable: true
+{
+    uin: 123123123
+    password: "password"
+    encrypt_password: false
+    password_encrypted: ""
+    enable_db: true
+    access_token: ""
+    relogin: {
+        enabled: true
+        relogin_delay: 3
+        max_relogin_times: 0
+    }
+    _rate_limit: {
+        enabled: false
+        frequency: 1
+        bucket_size: 1
+    }
+    ignore_invalid_cqcode: false
+    force_fragmented: false
+    heartbeat_interval: 0
+    http_config: {
+        enabled: true
+        host: 127.0.0.1
+        port: 5700
+        timeout: 0
+        post_urls: {
+            "127.0.0.1:5701/post": ""
+        }
+    }
+    ws_config: {
+        enabled: false
+        host: 0.0.0.0
+        port: 6700
+    }
+    ws_reverse_servers: []
+    post_message_format: array
+    use_sso_address: false
+    debug: false
+    log_level: "info"
+    web_ui: {
+        enabled: false
+        host: 127.0.0.1
+        web_ui_port: 9999
+        web_input: false
+    }
+}
 ```
 
 ### 配置MCDR
