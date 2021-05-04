@@ -3,8 +3,12 @@ import requests
 
 
 class Bot:
-    def __init__(self, config):
-        self.config = config
+    def __init__(self, factory):
+        self.__factory = factory
+
+    @property
+    def __config(self):
+        return self.__factory.config
 
     def reply(self, info, message: str):
         """auto reply"""
@@ -24,7 +28,7 @@ class Bot:
         if len(data) != 2:
             raise RuntimeError('Need a send message object id')
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/send_msg',
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/send_msg',
             json=data)
 
     def send_private_msg(self, user_id: int, message: str):
@@ -34,7 +38,7 @@ class Bot:
             'message': message
         }
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/send_private_msg',
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/send_private_msg',
             json=data)
 
     def send_group_msg(self, group_id: int, message: str):
@@ -44,7 +48,7 @@ class Bot:
             'message': message
         }
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/send_group_msg',
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/send_group_msg',
             json=data)
 
     def send_discuss_msg(self, discuss_id: int, message: str):
@@ -54,7 +58,7 @@ class Bot:
             'message': message
         }
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/send_discuss_msg',
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/send_discuss_msg',
             json=data)
 
     def delete_msg(self, message_id: int):
@@ -63,7 +67,7 @@ class Bot:
             'message_id': message_id
         }
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/delete_msg',
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/delete_msg',
             json=data)
 
     def set_group_kick(self, group_id: int, user_id: int,
@@ -75,7 +79,7 @@ class Bot:
             'reject_add_request': reject_add_request
         }
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/set_group_kick',
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/set_group_kick',
             json=data)
 
     def set_group_ban(self, group_id: int, user_id: int, duration: int):
@@ -86,7 +90,7 @@ class Bot:
             'duration': duration
         }
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/set_group_ban',
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/set_group_ban',
             json=data)
 
     def set_group_whole_ban(self, group_id: int, enable: bool):
@@ -96,7 +100,7 @@ class Bot:
             'enable': enable
         }
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/set_group_whole_ban',
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/set_group_whole_ban',
             json=data)
 
     def set_group_card(self, group_id: int, user_id: int, card: str = ''):
@@ -107,7 +111,7 @@ class Bot:
             'card': card
         }
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/set_group_card',
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/set_group_card',
             json=data)
 
     def set_group_special_title(self, group_id: int, user_id: int,
@@ -120,7 +124,7 @@ class Bot:
             'duration': duration
         }
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/set_group_special_title',
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/set_group_special_title',
             json=data)
 
     def set_friend_add_request(self, flag: str, approve: bool,
@@ -132,7 +136,7 @@ class Bot:
             'remark': remark
         }
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/set_friend_add_request',
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/set_friend_add_request',
             json=data)
 
     def set_group_add_request(self, flag: str, type: str, approve: bool = True,
@@ -145,23 +149,23 @@ class Bot:
             'reason': reason
         }
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/set_group_add_request',
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/set_group_add_request',
             json=data)
 
     def get_login_info(self):
         """get login info"""
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/get_login_info')
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/get_login_info')
 
     def get_friend_list(self):
         """get friend list"""
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/get_friend_list')
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/get_friend_list')
 
     def get_group_list(self):
         """get group list"""
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/get_group_list')
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/get_group_list')
 
     def get_group_info(self, group_id: int):
         """get group info"""
@@ -169,7 +173,7 @@ class Bot:
             'group_id': group_id
         }
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/get_group_info',
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/get_group_info',
             json=data)
 
     def get_group_member_list(self, group_id: int):
@@ -178,7 +182,7 @@ class Bot:
             'group_id': group_id
         }
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/get_group_member_list',
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/get_group_member_list',
             json=data)
 
     def get_group_member_info(self, group_id: int, user_id: int):
@@ -188,5 +192,5 @@ class Bot:
             'user_id': user_id
         }
         return requests.post(
-            f'http://{self.config["api_host"]}:{self.config["api_port"]}/get_group_member_info',
+            f'http://{self.__config["api_host"]}:{self.__config["api_port"]}/get_group_member_info',
             json=data)

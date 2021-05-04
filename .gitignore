@@ -1,14 +1,13 @@
-# release
-release/
+# IDEA
+/.idea
 
-# CoolQAPI
-CoolQAPI/config.yml
-CoolQAPI/__pycache__
-CoolQAPI/utils/__pycache__
-CoolQAPI/CoolQAPI_update
+# release
+/release
+
+# python
+__pycache__
 
 # QQBridge
-QQBridge/__pycache__
-QQBridge/.idea
-QQBridge/config.yml
-QQBridge/logs
+/QQBridge/.idea
+/QQBridge/config.yml
+/QQBridge/logs

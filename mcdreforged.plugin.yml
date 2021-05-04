@@ -43,3 +43,6 @@ version:
     0.1.0:
         files:
             CoolQAPI-0.1.0.zip: https://github.com/zhang-anzhi/CoolQAPI/releases/download/0.1.0/CoolQAPI-0.1.0.zip
+    0.2.0:
+        files:
+            CoolQAPI-0.2.0.zip: https://github.com/zhang-anzhi/CoolQAPI/releases/download/0.2.0/CoolQAPI-0.2.0.zip
